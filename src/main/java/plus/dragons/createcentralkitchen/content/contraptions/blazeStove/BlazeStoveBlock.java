@@ -97,19 +97,9 @@ public class BlazeStoveBlock extends HorizontalDirectionalBlock implements IBE<B
             return InteractionResult.SUCCESS;
         }
         
-        boolean noConsume = player.isCreative();
         boolean forceOverflow = !(player instanceof FakePlayer);
-        
-        InteractionResultHolder<ItemStack> holder = tryInsert(level, pos, stack, noConsume, forceOverflow, false);
-        ItemStack leftover = holder.getObject();
-        if (!level.isClientSide && !noConsume && !leftover.isEmpty()) {
-            if (stack.isEmpty()) {
-                player.setItemInHand(hand, leftover);
-            } else if (!player.getInventory().add(leftover)) {
-                player.drop(leftover, false);
-            }
-        }
-        
+        InteractionResultHolder<ItemStack> holder = tryInsert(level, pos, stack, true, forceOverflow, false);
+
         return holder.getResult().shouldAwardStats()
             ? InteractionResult.sidedSuccess(level.isClientSide)
             : InteractionResult.PASS;
