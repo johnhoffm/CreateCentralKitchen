@@ -69,7 +69,7 @@ repositories {
     }
     maven {
         name "Abnormals Maven"
-        url  "https://maven.jaackson.me"
+        url  "https://maven.teamabnormals.com"
     }
     maven {
         name "Apple Skin"
